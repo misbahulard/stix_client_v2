@@ -1,28 +1,62 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div :class="isSidebarOpened">
+    <router-view></router-view>
   </div>
 </template>
-
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+  import * as types from './store/types.js'
+  export default {
+    name: 'app',
+    data() {
+      return {
+        windowWidth: 0
+      }
+    },
+    computed: {
+      isSidebarOpened() {
+        if (this.windowWidth <= 1024) {
+          if (this.$store.getters[types.IS_SIDEBAR_OPENED]) {
+            return document.body.classList.remove("sidebar-gone")
+            return document.body.classList.add("sidebar-show")
+          } else {
+            return document.body.classList.add("sidebar-gone")
+            return document.body.classList.remove("sidebar-show")
+          }
+        } else {
+          if (this.$store.getters[types.IS_SIDEBAR_OPENED]) {
+            return document.body.classList.remove("sidebar-gone")
+            return document.body.classList.remove("sidebar-show")
+            return document.body.classList.add("sidebar-mini")
+          } else {
+            return document.body.classList.remove("sidebar-gone")
+            return document.body.classList.remove("sidebar-show")
+            return document.body.classList.remove("sidebar-mini")
+          }
+        }
+      },
+    },
+    mounted() {
 
-export default {
-  name: 'app',
-  components: {
-    HelloWorld
+      this.$nextTick(() => {
+        window.addEventListener('resize', () => {
+          this.windowWidth = window.innerWidth
+          if (this.windowWidth <= 1024) {
+            document.body.classList.add("sidebar-gone")
+          }
+        });
+      })
+    },
+    created() {
+      this.windowWidth = window.innerWidth
+      if (this.windowWidth <= 1024) {
+        document.body.classList.add("sidebar-gone")
+      }
+
+      this.$store.dispatch(types.TRY_AUTO_LOGIN)
+    },
   }
-}
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
