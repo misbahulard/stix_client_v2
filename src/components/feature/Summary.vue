@@ -15,7 +15,7 @@
               <h4>Observed Data</h4>
             </div>
             <div class="card-body">
-              1
+              {{ observedDataTotal }}
             </div>
           </div>
         </div>
@@ -30,7 +30,7 @@
               <h4>Indicator</h4>
             </div>
             <div class="card-body">
-              1
+              {{ indicatorTotal }}
             </div>
           </div>
         </div>
@@ -45,7 +45,7 @@
               <h4>Identity</h4>
             </div>
             <div class="card-body">
-              1
+              {{ identityTotal }}
             </div>
           </div>
         </div>
@@ -60,7 +60,7 @@
               <h4>Threat Actor</h4>
             </div>
             <div class="card-body">
-              1
+              {{ threatActorTotal }}
             </div>
           </div>
         </div>
@@ -78,7 +78,7 @@
               <h4>Attack Pattern</h4>
             </div>
             <div class="card-body">
-              1
+              {{ attackPatternTotal }}
             </div>
           </div>
         </div>
@@ -93,7 +93,7 @@
               <h4>Bundle</h4>
             </div>
             <div class="card-body">
-              1
+              {{ bundleTotal }}
             </div>
           </div>
         </div>
@@ -139,8 +139,37 @@
   </section>
 </template>
 <script>
+  import * as types from '@/store/types'
   export default {
-    name: "Summary"
+    name: "Summary",
+    computed: {
+      observedDataTotal() {
+        return this.$store.getters[types.OBSERVED_DATA_TOTAL]
+      },
+      indicatorTotal() {
+        return this.$store.getters[types.INDICATOR_TOTAL]
+      },
+      identityTotal() {
+        return this.$store.getters[types.IDENTITY_TOTAL]
+      },
+      threatActorTotal() {
+        return this.$store.getters[types.THREAT_ACTOR_TOTAL]
+      },
+      attackPatternTotal() {
+        return this.$store.getters[types.ATTACK_PATTERN_TOTAL]
+      },
+      bundleTotal() {
+        return this.$store.getters[types.BUNDLE_TOTAL]
+      }
+    },
+    mounted() {
+      this.$store.dispatch(types.GET_ALL_OBSERVED_DATA)
+      this.$store.dispatch(types.GET_ALL_INDICATOR)
+      this.$store.dispatch(types.GET_ALL_IDENTITY)
+      this.$store.dispatch(types.GET_ALL_THREAT_ACTOR)
+      this.$store.dispatch(types.GET_ALL_ATTACK_PATTERN)
+      this.$store.dispatch(types.GET_ALL_BUNDLE)
+    }
   }
 </script>
 <style scoped>

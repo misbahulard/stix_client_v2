@@ -1,7 +1,7 @@
-import * as types from '../types'
+import * as types from '@/store/types'
 import axios from 'axios'
 
-import router from '../../router.js'
+import router from '@/router.js'
 
 const state = {
   userId: null,
@@ -102,11 +102,19 @@ const actions = {
           const expirationDate = new Date(now.getTime() + 3600 * 1000)
           localStorage.setItem('token', res.data.access_token)
           localStorage.setItem('userId', res.data.id)
+          localStorage.setItem('username', res.data.username)
           localStorage.setItem('expirationDate', expirationDate)
+
+          var user = {
+            "token": res.data.access_token,
+            "userId": res.data.id,
+            "username": res.data.username
+          }
 
           dispatch(types.SET_LOGOUT_TIMER, 3600)
           commit(types.MUTATE_IS_LOADING)
           commit(types.MUTATE_USER_ERROR_MESSAGE, null)
+          commit(types.MUTATE_STORE_USER, user)
 
           router.replace('/')
         } else {
@@ -139,20 +147,29 @@ const actions = {
       token: token,
       userId: userId
     })
+
+    var user = {
+      "token": localStorage.getItem('token'),
+      "userId": localStorage.getItem('userId'),
+      "username": localStorage.getItem('username')
+    }
+    commit(types.MUTATE_STORE_USER, user)
+
   },
   [types.LOGOUT]: ({
     commit
   }) => {
-    axios.post('/user/logout', {}, {
+    axios.post('/logout/access', {}, {
         headers: {
-          'user-token': localStorage.getItem('token')
+          'Authorization': "Bearer " + localStorage.getItem('token')
         }
       })
       .then(res => {
-        if (res.data.logged_out) {
+        if (res.data.success) {
           commit(types.MUTATE_CLEAR_AUTH_DATA)
           localStorage.removeItem('token')
           localStorage.removeItem('userId')
+          localStorage.removeItem('username')
           localStorage.removeItem('expirationDate')
           router.replace('/login')
         }

@@ -1,0 +1,79 @@
+import * as types from '@/store/types'
+import axios from 'axios'
+
+import router from '@/router.js'
+
+const state = {
+  _links: null,
+  limit: null,
+  offset: null,
+  data: null,
+  size: null
+}
+
+const getters = {
+  [types.ALL_ATTACK_PATTERN]: state => {
+    return {
+      "_links": state._links,
+      "limit": state.limit,
+      "offset": state.offset,
+      "data": state.data,
+      size: state.size
+    }
+  },
+  [types.ATTACK_PATTERN]: state => {
+    return state.data
+  },
+  [types.ATTACK_PATTERN_TOTAL]: state => {
+    return state.size
+  }
+}
+
+const mutations = {
+  [types.MUTATE_ALL_ATTACK_PATTERN]: (state, data) => {
+    state._links = data._links,
+    state.limit = data.limit,
+    state.offset = data.offset,
+    state.data = data.data,
+    state.size = data.size
+  },
+  [types.MUTATE_ATTACK_PATTERN]: (state, data) => {
+    state.data = data.data
+  }
+}
+
+const actions = { 
+  [types.GET_ALL_ATTACK_PATTERN]: ({ commit }) => {
+    axios.post('/attack-patterns', {}, {
+      headers: {
+        'Authorization': "Bearer " + localStorage.getItem('token')
+      }
+    })
+    .then(res => {
+      if (res.data.data != null) {
+        commit(types.MUTATE_ALL_ATTACK_PATTERN, res.data)
+      }
+    })
+    .catch(err => console.log(err))
+  },
+  [types.GET_ATTACK_PATTERN]: ({ commit }, id) => {
+    axios.get('/attack-patterns/' + id, {
+      headers: {
+        'Authorization': "Bearer " + localStorage.getItem('token')
+      }
+    })
+    .then(res => {
+      if (res.data != null) {
+        commit(types.MUTATE_ATTACK_PATTERN, res.data)
+      }
+    })
+    .catch(err => console.log(err))
+  },
+}
+
+export default {
+  state,
+  getters,
+  mutations,
+  actions
+}

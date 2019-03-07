@@ -12,10 +12,10 @@
         <li class="dropdown">
           <a href="#" @click="isOpen=!isOpen" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
             <img alt="image" src="@/assets/img/avatar-1.png" class="rounded-circle mr-1">
-            <div class="d-sm-none d-lg-inline-block">Hi, Admin</div>
+            <div class="d-sm-none d-lg-inline-block">Hi, {{ username }}</div>
           </a>
           <div class="dropdown-menu dropdown-menu-right" :class="{show: isOpen}">
-            <a href="#" class="dropdown-item has-icon text-danger">
+            <a href="#" class="dropdown-item has-icon text-danger" @click="logout">
               <font-awesome-icon icon="sign-out-alt" /> Logout
             </a>
           </div>
@@ -34,9 +34,18 @@
         isOpen: false
       }
     },
+    computed: {
+      username() {
+        var user = this.$store.getters[types.GET_USER_INFO]
+        return user.username
+      }
+    },
     methods: {
       toggleSidebar() {
         this.$store.dispatch(types.VIEW_TOGGLE_SIDEBAR)
+      },
+      logout() {
+        this.$store.dispatch(types.LOGOUT)
       }
     }
   }
