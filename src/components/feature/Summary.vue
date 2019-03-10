@@ -119,13 +119,13 @@
           </div>
           <div class="card-body">
             <ul class="list-unstyled list-unstyled-border">
-              <li class="media" key={index}>
+              <li v-for="(item, index) in bundles.data.slice(0, 5)" class="media" :key="index">
                 <div class="media-body">
-                  <div class="float-right"><small>20 Feb 2019</small></div>
+                  <div class="float-right"><small>{{ item.objects[4].modified | moment('MMMM, Do YYYY') }}</small></div>
                   <div class="media-title">
-                    <router-link to="/bundle/">id</router-link>
+                    <router-link to="/bundle/">{{ item.id }}</router-link>
                   </div>
-                  <small>From ... attacker</small>
+                  <small>From {{ item.objects[4].name }} attacker</small>
                 </div>
               </li>
             </ul>
@@ -160,6 +160,9 @@
       },
       bundleTotal() {
         return this.$store.getters[types.BUNDLE_TOTAL]
+      },
+      bundles() {
+        return this.$store.getters[types.ALL_BUNDLE]
       }
     },
     mounted() {

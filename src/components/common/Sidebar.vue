@@ -9,35 +9,42 @@
       </div>
       <ul class="sidebar-menu">
         <li class="menu-header">Dashboard</li>
-        <li class="active">
-          <router-link to="/">
-            <font-awesome-icon icon="fire"/><span class="sidebar-text">Dashboard</span></router-link>
-        </li>
+        <router-link tag="li" to="/" active-class="active" exact>
+          <a>
+            <font-awesome-icon icon="fire" /><span class="sidebar-text">Dashboard</span>
+          </a>
+        </router-link>
         <li class="menu-header">Features</li>
-        <li>
-          <router-link to="/bundle">
-            <font-awesome-icon icon="archive"/><span class="sidebar-text">STIX Bundle</span></router-link>
-        </li>
-        <li>
-          <router-link to="/observed-data">
-            <font-awesome-icon icon="search"/><span class="sidebar-text">Observed Data</span></router-link>
-        </li>
-        <li>
-          <router-link to="/indicator">
-            <font-awesome-icon icon="eye"/><span class="sidebar-text">Indicator</span></router-link>
-        </li>
-        <li>
-          <router-link to="/identity">
-            <font-awesome-icon icon="user"/><span class="sidebar-text">Identity</span></router-link>
-        </li>
-        <li>
-          <router-link to="/threat-actor">
-            <font-awesome-icon icon="theater-masks"/><span class="sidebar-text">Threat Actor</span></router-link>
-        </li>
-        <li>
-          <router-link to="/attack-pattern">
-            <font-awesome-icon icon="code-branch"/><span class="sidebar-text">Attack Pattern</span></router-link>
-        </li>
+        <router-link tag="li" to="/bundle" active-class="active" exact>
+          <a>
+            <font-awesome-icon icon="archive" /><span class="sidebar-text">STIX Bundle</span>
+          </a>
+        </router-link>
+        <router-link tag="li" to="/observed-data" active-class="active" exact>
+          <a>
+            <font-awesome-icon icon="search" /><span class="sidebar-text">Observed Data</span>
+          </a>
+        </router-link>
+        <router-link tag="li" to="/indicator" active-class="active" exact>
+          <a>
+            <font-awesome-icon icon="eye" /><span class="sidebar-text">Indicator</span>
+          </a>
+        </router-link>
+        <router-link tag="li" to="/identity" active-class="active" exact>
+          <a>
+            <font-awesome-icon icon="user" /><span class="sidebar-text">Identity</span>
+          </a>
+        </router-link>
+        <router-link tag="li" to="/threat-actor" active-class="active" exact>
+          <a>
+            <font-awesome-icon icon="theater-masks" /><span class="sidebar-text">Threat Actor</span>
+          </a>
+        </router-link>
+        <router-link tag="li" to="/attack-pattern" active-class="active" exact>
+          <a>
+            <font-awesome-icon icon="code-branch" /><span class="sidebar-text">Attack Pattern</span>
+          </a>
+        </router-link>
       </ul>
     </aside>
   </div>

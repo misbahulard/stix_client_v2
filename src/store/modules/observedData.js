@@ -4,11 +4,12 @@ import axios from 'axios'
 import router from '@/router.js'
 
 const state = {
-  _links: null,
-  limit: null,
-  offset: null,
-  data: null,
-  size: null
+  _links: {},
+  limit: 20,
+  offset: 1,
+  data: [],
+  size: 0,
+  isLoading: false
 }
 
 const getters = {
@@ -26,6 +27,9 @@ const getters = {
   },
   [types.OBSERVED_DATA_TOTAL]: state => {
     return state.size
+  },
+  [types.OBSERVED_DATA_LOADING]: state => {
+    return state.isLoading
   }
 }
 
@@ -39,24 +43,45 @@ const mutations = {
   },
   [types.MUTATE_OBSERVED_DATA]: (state, data) => {
     state.data = data.data
+  },
+  [types.MUTATE_OBSERVED_DATA_LOADING]: (state, data) => {
+    state.isLoading = data
   }
 }
 
 const actions = { 
-  [types.GET_ALL_OBSERVED_DATA]: ({ commit }) => {
-    axios.post('/observed-datas', {}, {
+  [types.GET_ALL_OBSERVED_DATA]: ({ commit }, data) => {
+    commit(types.MUTATE_OBSERVED_DATA_LOADING, true)
+
+    var params = {}
+    if (data != null) {
+      params = {
+        offset: data.page,
+        limit: data.rowsPerPage,
+        sorted: [{ id: data.sortBy, desc: data.descending }],
+        filtered: []
+      }
+    }
+
+    axios.post('/observed-datas', params, {
       headers: {
         'Authorization': "Bearer " + localStorage.getItem('token')
       }
     })
     .then(res => {
       if (res.data.data != null) {
+        commit(types.MUTATE_OBSERVED_DATA_LOADING, false)
         commit(types.MUTATE_ALL_OBSERVED_DATA, res.data)
       }
     })
-    .catch(err => console.log(err))
+    .catch(err => {
+      commit(types.MUTATE_OBSERVED_DATA_LOADING, false)
+      console.log(err)
+    })
   },
   [types.GET_OBSERVED_DATA]: ({ commit }, id) => {
+    commit(types.MUTATE_OBSERVED_DATA_LOADING, true)
+
     axios.get('/observed-datas/' + id, {
       headers: {
         'Authorization': "Bearer " + localStorage.getItem('token')
@@ -65,6 +90,7 @@ const actions = {
     .then(res => {
       if (res.data != null) {
         commit(types.MUTATE_OBSERVED_DATA, res.data)
+        commit(types.MUTATE_OBSERVED_DATA_LOADING, false)
       }
     })
     .catch(err => console.log(err))

@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import './plugins/vuetify'
 import App from './App.vue'
 import router from './router'
 import {
@@ -31,6 +32,8 @@ import {
 library.add([faBars, faSearch, faSignOutAlt, faFire, faArchive, faEye, faUser, faTheaterMasks, faCodeBranch])
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
+
+Vue.use(require('vue-moment'));
 
 Vue.config.productionTip = false
 

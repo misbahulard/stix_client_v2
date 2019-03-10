@@ -8,6 +8,7 @@ export const IS_LOADING = 'user/IS_LOADING'
 export const ALL_OBSERVED_DATA ='observed_data/ALL_OBSERVED_DATA'
 export const OBSERVED_DATA ='observed_data/OBSERVED_DATA'
 export const OBSERVED_DATA_TOTAL = 'observed_data/OBSERVED_DATA_TOTAL'
+export const OBSERVED_DATA_LOADING = 'observed_data/OBSERVED_DATA_LOADING'
 /** INDICATOR */
 export const ALL_INDICATOR ='indicator/ALL_INDICATOR'
 export const INDICATOR ='indicator/INDICATOR'
@@ -40,6 +41,7 @@ export const MUTATE_IS_LOADING = 'user/MUTATE_IS_LOADING'
 /** OBSERVED DATA */
 export const MUTATE_ALL_OBSERVED_DATA = 'observed_data/MUTATE_ALL_OBSERVED_DATA'
 export const MUTATE_OBSERVED_DATA = 'observed_data/MUTATE_OBSERVED_DATA'
+export const MUTATE_OBSERVED_DATA_LOADING = 'observed_data/MUTATE_OBSERVED_DATA_LOADING'
 /** INDICATOR */
 export const MUTATE_ALL_INDICATOR = 'indicator/MUTATE_ALL_INDICATOR'
 export const MUTATE_INDICATOR = 'indicator/MUTATE_INDICATOR'
