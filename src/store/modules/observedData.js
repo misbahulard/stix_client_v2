@@ -55,11 +55,20 @@ const actions = {
 
     var params = {}
     if (data != null) {
-      params = {
-        offset: data.page,
-        limit: data.rowsPerPage,
-        sorted: [{ id: data.sortBy, desc: data.descending }],
-        filtered: []
+      if (data.searchBy == "" && data.query == "") {
+        // kurangi -1 pada offset karena mongo DB offset 0 = data paling awal
+        params = {
+          offset: data.page - 1,
+          limit: data.rowsPerPage,
+          sorted: [{ id: data.sortBy, desc: data.descending }]
+        }
+      } else {
+        params = {
+          offset: data.page - 1,
+          limit: data.rowsPerPage,
+          sorted: [{ id: data.sortBy, desc: data.descending }],
+          filtered: [{ id: data.searchBy, value: data.query}]
+        }
       }
     }
 
