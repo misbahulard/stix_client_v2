@@ -13,22 +13,27 @@ export const OBSERVED_DATA_LOADING = 'observed_data/OBSERVED_DATA_LOADING'
 export const ALL_INDICATOR ='indicator/ALL_INDICATOR'
 export const INDICATOR ='indicator/INDICATOR'
 export const INDICATOR_TOTAL = 'indicator/INDICATOR_TOTAL'
+export const INDICATOR_LOADING = 'indicator/INDICATOR_LOADING'
 /** IDENTITY */
-export const ALL_IDENTITY ='indicator/ALL_IDENTITY'
-export const IDENTITY ='indicator/IDENTITY'
-export const IDENTITY_TOTAL = 'indicator/IDENTITY_TOTAL'
+export const ALL_IDENTITY ='identity/ALL_IDENTITY'
+export const IDENTITY ='identity/IDENTITY'
+export const IDENTITY_TOTAL = 'identity/IDENTITY_TOTAL'
+export const IDENTITY_LOADING = 'identity/IDENTITY_LOADING'
 /** THREAT_ACTOR */
-export const ALL_THREAT_ACTOR ='indicator/ALL_THREAT_ACTOR'
-export const THREAT_ACTOR ='indicator/THREAT_ACTOR'
-export const THREAT_ACTOR_TOTAL = 'indicator/THREAT_ACTOR_TOTAL'
+export const ALL_THREAT_ACTOR ='threat_actor/ALL_THREAT_ACTOR'
+export const THREAT_ACTOR ='threat_actor/THREAT_ACTOR'
+export const THREAT_ACTOR_TOTAL = 'threat_actor/THREAT_ACTOR_TOTAL'
+export const THREAT_ACTOR_LOADING = 'threat_actor/THREAT_ACTOR_LOADING'
 /** ATTACK_PATTERN */
-export const ALL_ATTACK_PATTERN ='indicator/ALL_ATTACK_PATTERN'
-export const ATTACK_PATTERN ='indicator/ATTACK_PATTERN'
-export const ATTACK_PATTERN_TOTAL = 'indicator/ATTACK_PATTERN_TOTAL'
+export const ALL_ATTACK_PATTERN ='attack_pattern/ALL_ATTACK_PATTERN'
+export const ATTACK_PATTERN ='attack_pattern/ATTACK_PATTERN'
+export const ATTACK_PATTERN_TOTAL = 'attack_pattern/ATTACK_PATTERN_TOTAL'
+export const ATTACK_PATTERN_LOADING = 'attack_pattern/ATTACK_PATTERN_LOADING'
 /** BUNDLE */
-export const ALL_BUNDLE ='indicator/ALL_BUNDLE'
-export const BUNDLE ='indicator/BUNDLE'
-export const BUNDLE_TOTAL = 'indicator/BUNDLE_TOTAL'
+export const ALL_BUNDLE ='bundle/ALL_BUNDLE'
+export const BUNDLE ='bundle/BUNDLE'
+export const BUNDLE_TOTAL = 'bundle/BUNDLE_TOTAL'
+export const BUNDLE_LOADING = 'bundle/BUNDLE_LOADING'
 
 
 // Mutations
@@ -45,18 +50,23 @@ export const MUTATE_OBSERVED_DATA_LOADING = 'observed_data/MUTATE_OBSERVED_DATA_
 /** INDICATOR */
 export const MUTATE_ALL_INDICATOR = 'indicator/MUTATE_ALL_INDICATOR'
 export const MUTATE_INDICATOR = 'indicator/MUTATE_INDICATOR'
+export const MUTATE_INDICATOR_LOADING = 'indicator/MUTATE_INDICATOR_LOADING'
 /** IDENTITY */
-export const MUTATE_ALL_IDENTITY = 'indicator/MUTATE_ALL_IDENTITY'
-export const MUTATE_IDENTITY = 'indicator/MUTATE_IDENTITY'
+export const MUTATE_ALL_IDENTITY = 'identity/MUTATE_ALL_IDENTITY'
+export const MUTATE_IDENTITY = 'identity/MUTATE_IDENTITY'
+export const MUTATE_IDENTITY_LOADING = 'identity/MUTATE_IDENTITY_LOADING'
 /** THREAT_ACTOR */
-export const MUTATE_ALL_THREAT_ACTOR = 'indicator/MUTATE_ALL_THREAT_ACTOR'
-export const MUTATE_THREAT_ACTOR = 'indicator/MUTATE_THREAT_ACTOR'
+export const MUTATE_ALL_THREAT_ACTOR = 'threat_actor/MUTATE_ALL_THREAT_ACTOR'
+export const MUTATE_THREAT_ACTOR = 'threat_actor/MUTATE_THREAT_ACTOR'
+export const MUTATE_THREAT_ACTOR_LOADING = 'threat_actor/MUTATE_THREAT_ACTOR_LOADING'
 /** ATTACK_PATTERN */
-export const MUTATE_ALL_ATTACK_PATTERN = 'indicator/MUTATE_ALL_ATTACK_PATTERN'
-export const MUTATE_ATTACK_PATTERN = 'indicator/MUTATE_ATTACK_PATTERN'
+export const MUTATE_ALL_ATTACK_PATTERN = 'attack_pattern/MUTATE_ALL_ATTACK_PATTERN'
+export const MUTATE_ATTACK_PATTERN = 'attack_pattern/MUTATE_ATTACK_PATTERN'
+export const MUTATE_ATTACK_PATTERN_LOADING = 'attack_pattern/MUTATE_ATTACK_PATTERN_LOADING'
 /** BUNDLE */
-export const MUTATE_ALL_BUNDLE = 'indicator/MUTATE_ALL_BUNDLE'
-export const MUTATE_BUNDLE = 'indicator/MUTATE_BUNDLE'
+export const MUTATE_ALL_BUNDLE = 'bundle/MUTATE_ALL_BUNDLE'
+export const MUTATE_BUNDLE = 'bundle/MUTATE_BUNDLE'
+export const MUTATE_BUNDLE_LOADING = 'bundle/MUTATE_BUNDLE_LOADING'
 
 // Actions
 export const VIEW_TOGGLE_SIDEBAR = 'view/VIEW_TOGGLE_SIDEBAR'

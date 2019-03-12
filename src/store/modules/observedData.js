@@ -5,8 +5,8 @@ import router from '@/router.js'
 
 const state = {
   _links: {},
-  limit: 20,
-  offset: 1,
+  limit: 5,
+  offset: 0,
   data: [],
   size: 0,
   isLoading: false
@@ -36,10 +36,10 @@ const getters = {
 const mutations = {
   [types.MUTATE_ALL_OBSERVED_DATA]: (state, data) => {
     state._links = data._links,
-    state.limit = data.limit,
-    state.offset = data.offset,
-    state.data = data.data,
-    state.size = data.size
+      state.limit = data.limit,
+      state.offset = data.offset,
+      state.data = data.data,
+      state.size = data.size
   },
   [types.MUTATE_OBSERVED_DATA]: (state, data) => {
     state.data = data.data
@@ -49,8 +49,10 @@ const mutations = {
   }
 }
 
-const actions = { 
-  [types.GET_ALL_OBSERVED_DATA]: ({ commit }, data) => {
+const actions = {
+  [types.GET_ALL_OBSERVED_DATA]: ({
+    commit
+  }, data) => {
     commit(types.MUTATE_OBSERVED_DATA_LOADING, true)
 
     var params = {}
@@ -60,49 +62,60 @@ const actions = {
         params = {
           offset: data.page - 1,
           limit: data.rowsPerPage,
-          sorted: [{ id: data.sortBy, desc: data.descending }]
+          sorted: [{
+            id: data.sortBy,
+            desc: data.descending
+          }]
         }
       } else {
         params = {
           offset: data.page - 1,
           limit: data.rowsPerPage,
-          sorted: [{ id: data.sortBy, desc: data.descending }],
-          filtered: [{ id: data.searchBy, value: data.query}]
+          sorted: [{
+            id: data.sortBy,
+            desc: data.descending
+          }],
+          filtered: [{
+            id: data.searchBy,
+            value: data.query
+          }]
         }
       }
     }
 
     axios.post('/observed-datas', params, {
-      headers: {
-        'Authorization': "Bearer " + localStorage.getItem('token')
-      }
-    })
-    .then(res => {
-      if (res.data.data != null) {
+        headers: {
+          'Authorization': "Bearer " + localStorage.getItem('token')
+        }
+      })
+      .then(res => {
+        if (res.data.data != null) {
+          commit(types.MUTATE_OBSERVED_DATA_LOADING, false)
+          commit(types.MUTATE_ALL_OBSERVED_DATA, res.data)
+        }
+      })
+      .catch(err => {
         commit(types.MUTATE_OBSERVED_DATA_LOADING, false)
-        commit(types.MUTATE_ALL_OBSERVED_DATA, res.data)
-      }
-    })
-    .catch(err => {
-      commit(types.MUTATE_OBSERVED_DATA_LOADING, false)
-      console.log(err)
-    })
+        console.log(err)
+      })
   },
-  [types.GET_OBSERVED_DATA]: ({ commit }, id) => {
+  [types.GET_OBSERVED_DATA]: ({
+    commit
+  }, id) => {
     commit(types.MUTATE_OBSERVED_DATA_LOADING, true)
 
     axios.get('/observed-datas/' + id, {
-      headers: {
-        'Authorization': "Bearer " + localStorage.getItem('token')
-      }
-    })
-    .then(res => {
-      if (res.data != null) {
-        commit(types.MUTATE_OBSERVED_DATA, res.data)
-        commit(types.MUTATE_OBSERVED_DATA_LOADING, false)
-      }
-    })
-    .catch(err => console.log(err))
+        headers: {
+          'Authorization': "Bearer " + localStorage.getItem('token')
+        }
+      })
+      .then(res => {
+        if (res.data != null) {
+          commit(types.MUTATE_OBSERVED_DATA, res.data)
+          commit(types.MUTATE_OBSERVED_DATA_LOADING, false)
+        }
+      })
+      .catch(err => console.log(err))
   },
 }
 

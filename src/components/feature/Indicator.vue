@@ -1,12 +1,12 @@
 <template>
   <section class="section">
     <div class="section-header">
-      <h1>Observed Data</h1>
+      <h1>Indicator</h1>
     </div>
     <v-app>
       <v-card>
         <v-card-title>
-          Observed Data
+          Indicator
           <v-spacer></v-spacer>
           <v-flex xs12 sm7 d-flex d-justify-between>
             <v-select :items="options" v-model="selectedOption" label="Field" flat solo attach single-line hide-details></v-select>
@@ -18,11 +18,9 @@
           <template v-slot:items="props">
             <tr @click="props.expanded = !props.expanded" style="cursor: pointer;">
               <td>{{ props.item.id }}</td>
-              <td>{{ props.item.objects[0].value }}</td>
-              <td>{{ props.item.objects[1].value }}</td>
-              <td>{{ props.item.objects[2].dst_port }}</td>
-              <td class="text-xs-right">{{ props.item.number_observed }}</td>
-              <td class="text-xs-right">{{ props.item.first_observed | moment('MMMM Do YYYY, h:mm:ss a') }}</td>
+              <td>{{ props.item.name }}</td>
+              <td>{{ props.item.description }}</td>
+              <td class="text-xs-right">{{ props.item.created | moment('MMMM Do YYYY, h:mm:ss a') }}</td>
 
             </tr>
           </template>
@@ -30,7 +28,7 @@
             <v-card flat style="background-color: #f7f7f7;">
               <v-card-title primary-title>
                 <div>
-                  <div class="headline">Observed Data Detail</div>
+                  <div class="headline">Indicator Detail</div>
                   <span>Detail from {{ props.item.id }}</span>
                 </div>
               </v-card-title>
@@ -42,33 +40,21 @@
                   <div class="col-md-2 col-3 col-sm-4 font-weight-bold">Type</div>
                   <div class="col-md-10 col-9 col-sm-8">: {{ props.item.type }}</div>
 
-                  <div class="col-md-2 col-3 col-sm-4 font-weight-bold">First Observed</div>
-                  <div class="col-md-10 col-9 col-sm-8">:
-                    {{ props.item.first_observed | moment('MMMM Do YYYY, h:mm:ss a') }}
-                  </div>
+                  <div class="col-md-2 col-3 col-sm-4 font-weight-bold">Name</div>
+                  <div class="col-md-10 col-9 col-sm-8">: {{ props.item.name }}</div>
+                  
+                  <div class="col-md-2 col-3 col-sm-4 font-weight-bold">&#9500; Description</div>
+                  <div class="col-md-10 col-9 col-sm-8">: {{ props.item.description }}</div>
 
-                  <div class="col-md-2 col-3 col-sm-4 font-weight-bold">Last Observed</div>
-                  <div class="col-md-10 col-9 col-sm-8">:
-                    {{ props.item.last_observed | moment('MMMM Do YYYY, h:mm:ss a') }}
-                  </div>
+                  <div class="col-md-2 col-3 col-sm-4 font-weight-bold">&#9500; Labels</div>
+                  <div class="col-md-10 col-9 col-sm-8">: {{ props.item.labels[0] }}</div>
 
-                  <div class="col-md-2 col-3 col-sm-4 font-weight-bold">Number Observed</div>
-                  <div class="col-md-10 col-9 col-sm-8">: {{ props.item.number_observed }}</div>
+                  <div class="col-md-2 col-3 col-sm-4 font-weight-bold">&#9500; Valid from</div>
+                  <div class="col-md-10 col-9 col-sm-8">: {{ props.item.valid_from | moment('MMMM Do YYYY, h:mm:ss a') }}</div>
 
-                  <div class="col-md-2 col-3 col-sm-4 font-weight-bold">Objects</div>
-                  <div class="col-md-10 col-9 col-sm-8"></div>
-                  <div class="col-md-2 col-3 col-sm-4 font-weight-bold">&#9500; Type</div>
-                  <div class="col-md-10 col-9 col-sm-8">: {{ props.item.objects[2].type }}</div>
-                  <div class="col-md-2 col-3 col-sm-4 font-weight-bold">&#9500; Source IP</div>
-                  <div class="col-md-10 col-9 col-sm-8">: {{ props.item.objects[0].value }}</div>
-                  <div class="col-md-2 col-3 col-sm-4 font-weight-bold">&#9500; Destination IP</div>
-                  <div class="col-md-10 col-9 col-sm-8">: {{ props.item.objects[1].value }}</div>
-                  <div class="col-md-2 col-3 col-sm-4 font-weight-bold">&#9500; Destination Port</div>
-                  <div class="col-md-10 col-9 col-sm-8">: {{ props.item.objects[2].dst_port }}</div>
-                  <div class="col-md-2 col-3 col-sm-4 font-weight-bold">&#9500; Protocol</div>
-                  <div class="col-md-10 col-9 col-sm-8">:
-                    {{ props.item.objects[2].protocols[0] }} - {{ props.item.objects[2].protocols[1] }}
-                  </div>
+                  <div class="col-md-2 col-3 col-sm-4 font-weight-bold">&#9500; Pattern</div>
+                  <div class="col-md-10 col-9 col-sm-8">: {{ props.item.pattern }}</div>
+
 
                   <div class="col-md-2 col-3 col-sm-4 font-weight-bold">Created</div>
                   <div class="col-md-10 col-9 col-sm-8">: {{ props.item.created | moment('MMMM Do YYYY, h:mm:ss a') }}</div>
@@ -98,20 +84,16 @@
             value: 'id'
           },
           {
-            text: 'Number Observed',
-            value: 'number_observed'
+            text: 'Name',
+            value: 'name'
           },
           {
-            text: 'Source IP',
-            value: 'objects.0.value'
+            text: 'Description',
+            value: 'description'
           },
           {
-            text: 'Destination IP',
-            value: 'objects.1.value'
-          },
-          {
-            text: 'Destination Port',
-            value: 'objects.2.dst_port'
+            text: 'Pattern',
+            value: 'pattern'
           },
         ],
         search: '',
@@ -128,24 +110,16 @@
             value: 'id'
           },
           {
-            text: 'Source IP',
-            value: 'objects.0.value'
+            text: 'Name',
+            value: 'name'
           },
           {
-            text: 'Destination IP',
-            value: 'objects.1.value'
+            text: 'Description',
+            value: 'description'
           },
           {
-            text: 'Destination Port',
-            value: 'objects.2.dst_port'
-          },
-          {
-            text: 'Number Observed',
-            value: 'number_observed'
-          },
-          {
-            text: 'First Observed',
-            value: 'first_observed'
+            text: 'Created',
+            value: 'created'
           }
         ]
       }
@@ -179,20 +153,20 @@
       },
       params: {
         handler() {
-          this.$store.dispatch(types.GET_ALL_OBSERVED_DATA, this.params)
+          this.$store.dispatch(types.GET_ALL_INDICATOR, this.params)
         }
       }
     },
     computed: {
       observedDatas() {
-        return this.$store.getters[types.ALL_OBSERVED_DATA]
+        return this.$store.getters[types.ALL_INDICATOR]
       },
       observedDatasLoading() {
-        return this.$store.getters[types.OBSERVED_DATA_LOADING]
+        return this.$store.getters[types.INDICATOR_LOADING]
       }
     },
     mounted() {
-      this.$store.dispatch(types.GET_ALL_OBSERVED_DATA)
+      this.$store.dispatch(types.GET_ALL_INDICATOR)
     }
   }
 </script>
