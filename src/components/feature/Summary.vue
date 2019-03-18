@@ -107,7 +107,7 @@
             <h4>Recent Bundle Visualization</h4>
           </div>
           <div class="card-body">
-            STIX Graph
+            <stix></stix>
           </div>
         </div>
       </div>
@@ -139,9 +139,14 @@
   </section>
 </template>
 <script>
+  import Stix from '@/components/feature/Stix'
   import * as types from '@/store/types'
+
   export default {
     name: "Summary",
+    components: {
+      Stix
+    },
     computed: {
       observedDataTotal() {
         return this.$store.getters[types.OBSERVED_DATA_TOTAL]

@@ -49,6 +49,9 @@
                   <div class="col-md-2 col-3 col-sm-4 font-weight-bold">&#9500; Dest Port</div>
                   <div class="col-md-10 col-9 col-sm-8">: {{ props.item.objects[0].objects[2].dst_port }}</div>
 
+                  <div class="col-md-2 col-3 col-sm-4 font-weight-bold">&#9500; Total obs.</div>
+                  <div class="col-md-10 col-9 col-sm-8">: {{ props.item.objects[0].number_observed }}</div>
+
                   <div class="col-md-2 col-3 col-sm-4 font-weight-bold">&#9500; Threat Actor</div>
                   <div class="col-md-10 col-9 col-sm-8">: {{ props.item.objects[4].description }}</div>
 
