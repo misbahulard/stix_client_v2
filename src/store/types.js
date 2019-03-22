@@ -34,6 +34,9 @@ export const ALL_BUNDLE ='bundle/ALL_BUNDLE'
 export const BUNDLE ='bundle/BUNDLE'
 export const BUNDLE_TOTAL = 'bundle/BUNDLE_TOTAL'
 export const BUNDLE_LOADING = 'bundle/BUNDLE_LOADING'
+export const BUNDLE_SELECTED_BUNDLE = 'bundle/BUNDLE_SELECTED_BUNDLE'
+export const BUNDLE_SELECTED_NODE = 'bundle/BUNDLE_SELECTED_NODE'
+export const BUNDLE_LEGEND = 'bundle/BUNDLE_LEGEND'
 
 
 // Mutations
@@ -67,6 +70,8 @@ export const MUTATE_ATTACK_PATTERN_LOADING = 'attack_pattern/MUTATE_ATTACK_PATTE
 export const MUTATE_ALL_BUNDLE = 'bundle/MUTATE_ALL_BUNDLE'
 export const MUTATE_BUNDLE = 'bundle/MUTATE_BUNDLE'
 export const MUTATE_BUNDLE_LOADING = 'bundle/MUTATE_BUNDLE_LOADING'
+export const MUTATE_BUNDLE_SELECTED_BUNDLE = 'bundle/MUTATE_BUNDLE_SELECTED_BUNDLE'
+export const MUTATE_BUNDLE_SELECTED_NODE = 'bundle/MUTATE_BUNDLE_SELECTED_NODE'
 
 // Actions
 export const VIEW_TOGGLE_SIDEBAR = 'view/VIEW_TOGGLE_SIDEBAR'
@@ -94,5 +99,7 @@ export const GET_ATTACK_PATTERN = 'indicator/GET_ATTACK_PATTERN'
 /** BUNDLE */
 export const GET_ALL_BUNDLE = 'indicator/GET_ALL_BUNDLE'
 export const GET_BUNDLE = 'indicator/GET_BUNDLE'
+export const CHANGE_BUNDLE_SELECTED_BUNDLE = 'bundle/CHANGE_BUNDLE_SELECTED_BUNDLE'
+export const CHANGE_BUNDLE_SELECTED_NODE = 'bundle/CHANGE_BUNDLE_SELECTED_NODE'
 // export const STORE_USER = 'user/STORE_USER'
 // export const FETCH_USER = 'user/FETCH_USER'

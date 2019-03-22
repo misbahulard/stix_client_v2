@@ -102,12 +102,12 @@
     <div class="row">
       <!-- Visualisasi STIX -->
       <div class="col-lg-8 col-md-12 col-12 col-sm-12">
-        <div class="card">
+        <div class="card" v-if="!bundlesIsLoading">
           <div class="card-header">
             <h4>Recent Bundle Visualization</h4>
           </div>
-          <div class="card-body">
-            <stix></stix>
+          <div class="card-body" ref="stixContainer">
+            <stix :data="bundles.data[0]" :width="width" :height="height"></stix>
           </div>
         </div>
       </div>
@@ -147,6 +147,12 @@
     components: {
       Stix
     },
+    data() {
+      return {
+        height: 0,
+        width: 0
+      }
+    },
     computed: {
       observedDataTotal() {
         return this.$store.getters[types.OBSERVED_DATA_TOTAL]
@@ -168,9 +174,15 @@
       },
       bundles() {
         return this.$store.getters[types.ALL_BUNDLE]
+      },
+      bundlesIsLoading() {
+        return this.$store.getters[types.BUNDLE_LOADING]
       }
     },
     mounted() {
+      this.height = 500
+      this.width = this.$refs.stixContainer.clientWidth - 50
+
       this.$store.dispatch(types.GET_ALL_OBSERVED_DATA)
       this.$store.dispatch(types.GET_ALL_INDICATOR)
       this.$store.dispatch(types.GET_ALL_IDENTITY)

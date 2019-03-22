@@ -3,18 +3,74 @@
     <div class="section-header">
       <h1>Bundle</h1>
     </div>
+    <div class="row">
+      <div class="col-lg-8 col-md-12 col-12 col-sm-12">
+        <div class="card card-primary" v-if="!bundlesIsLoading">
+          <div class="card-header">
+            <h4>Recent Bundle Visualization</h4>
+          </div>
+          <div class="card-body" ref="stixContainer">
+            <stix :data="bundles.data[0]" :width="width" :height="height"></stix>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-12 col-12 col-sm-12">
+        <div class="card card-warning">
+          <div class="card-header">
+            <h4>Legend</h4>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div v-for="leg in legend" class="col-lg-6 col-md-6 col-6 col-sm-12" :key="leg.name">
+                <div class="media">
+                  <img :alt="leg.name" :src="'/img/icons/' + leg.icon" width="30" class="rounded-circle mr-2"></img>
+                  <p>{{ leg.name }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card card-info">
+          <div class="card-header">
+            <h4>Selected Node</h4>
+          </div>
+          <div class="card-body">
+            <div class="card-body p-0">
+              <div class="table-responsive">
+                <table class="table table-striped table-md">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="(value, key) in selectedNode" :key="key">
+                      <td>{{ key }}</td>
+                      <td>{{ String(value) }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <v-app>
       <v-card>
         <v-card-title>
           Bundle
           <v-spacer></v-spacer>
           <v-flex xs12 sm7 d-flex d-justify-between>
-            <v-select :items="options" v-model="selectedOption" label="Field" flat solo attach single-line hide-details></v-select>
-            <v-text-field v-model="search" append-icon="search" label="Search" flat solo single-line hide-details></v-text-field>
+            <v-select :items="options" v-model="selectedOption" label="Field" flat solo attach single-line hide-details>
+            </v-select>
+            <v-text-field v-model="search" append-icon="search" label="Search" flat solo single-line hide-details>
+            </v-text-field>
           </v-flex>
         </v-card-title>
-        <v-data-table :headers="headers" :items="observedDatas.data" :pagination.sync="pagination" :total-items="observedDatas.size"
-          :loading="observedDatasLoading" :expand="expand" class="elevation-1">
+        <v-data-table :headers="headers" :items="bundles.data" :pagination.sync="pagination" :total-items="bundles.size"
+          :loading="bundlesIsLoading" :expand="expand" class="elevation-1">
           <template v-slot:items="props">
             <tr @click="props.expanded = !props.expanded" style="cursor: pointer;">
               <td>{{ props.item.id }}</td>
@@ -70,9 +126,14 @@
   </section>
 </template>
 <script>
+  import Stix from '@/components/feature/Stix'
   import * as types from '@/store/types'
+
   export default {
     name: "ObservedData",
+    components: {
+      Stix
+    },
     data() {
       return {
         expand: false,
@@ -120,7 +181,9 @@
             text: 'Attack Pattern',
             value: 'objects.5.name'
           }
-        ]
+        ],
+        height: 0,
+        width: 0
       }
     },
     watch: {
@@ -157,14 +220,68 @@
       }
     },
     computed: {
-      observedDatas() {
+      bundles() {
         return this.$store.getters[types.ALL_BUNDLE]
       },
-      observedDatasLoading() {
+      bundlesIsLoading() {
         return this.$store.getters[types.BUNDLE_LOADING]
+      },
+      selectedBundle() {
+        return this.$store.getters[types.BUNDLE_SELECTED_BUNDLE]
+      },
+      selectedNode() {
+        return this.$store.getters[types.BUNDLE_SELECTED_NODE]
+      },
+      legend() {
+        return this.$store.getters[types.BUNDLE_LEGEND]
+      }
+    },
+    methods: {
+      /**
+       * nomrmalisasi object dengan cara menghilangkan informasi yang tidak penting
+       * @param {object} data - object bundle
+       */
+      normalizeObject(data) {
+        var clearedObj = Object.assign({}, data)
+        delete clearedObj["fx"];
+        delete clearedObj["fy"];
+        delete clearedObj["vx"];
+        delete clearedObj["vy"];
+        delete clearedObj["x"];
+        delete clearedObj["y"];
+        delete clearedObj["index"];
+
+        return clearedObj;
+      },
+
+      /**
+       * dapatkan legenda dari object bundle
+       * legenda berupa icon dan nama objectnya
+       * @param {object} data - object bundle
+       */
+      getLegend(data) {
+        var legend = [];
+        var objects = data.objects;
+        objects.forEach(item => {
+          if (item['type'] !== 'relationship') {
+            var exist = legend.some(el => el.name === item.type);
+            if (!exist) {
+              var icon = "stix2_" + item.type.replace(/\-/g, '_') + "_icon_tiny_round_v1.png";
+              legend.push({
+                name: item.type,
+                icon: icon
+              });
+            }
+          }
+        });
+
+        return legend;
       }
     },
     mounted() {
+      this.height = 500
+      this.width = this.$refs.stixContainer.clientWidth - 50
+
       this.$store.dispatch(types.GET_ALL_BUNDLE)
     }
   }

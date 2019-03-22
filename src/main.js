@@ -33,7 +33,7 @@ library.add([faBars, faSearch, faSignOutAlt, faFire, faArchive, faEye, faUser, f
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
-Vue.use(require('vue-moment'));
+Vue.use(require('vue-moment'))
 
 Vue.config.productionTip = false
 
