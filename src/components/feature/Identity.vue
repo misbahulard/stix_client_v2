@@ -16,12 +16,14 @@
         <v-data-table :headers="headers" :items="observedDatas.data" :pagination.sync="pagination" :total-items="observedDatas.size"
           :loading="observedDatasLoading" :expand="expand" class="elevation-1">
           <template v-slot:items="props">
-            <tr @click="props.expanded = !props.expanded" style="cursor: pointer;">
+            <tr>
               <td>{{ props.item.id }}</td>
               <td>{{ props.item.name }}</td>
               <td>{{ props.item.description }}</td>
               <td class="text-xs-right">{{ props.item.created | moment('MMMM Do YYYY, h:mm:ss a') }}</td>
-
+              <td>
+                <button class="btn btn-primary" style="margin-right: 8px;" @click="props.expanded = !props.expanded"><font-awesome-icon icon="expand" /></button>
+              </td>
             </tr>
           </template>
           <template v-slot:expand="props">
@@ -109,6 +111,10 @@
           {
             text: 'Created',
             value: 'created'
+          },
+          {
+            text: 'Action',
+            value: 'action'
           }
         ]
       }

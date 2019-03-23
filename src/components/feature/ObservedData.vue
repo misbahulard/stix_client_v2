@@ -16,14 +16,16 @@
         <v-data-table :headers="headers" :items="observedDatas.data" :pagination.sync="pagination" :total-items="observedDatas.size"
           :loading="observedDatasLoading" :expand="expand" class="elevation-1">
           <template v-slot:items="props">
-            <tr @click="props.expanded = !props.expanded" style="cursor: pointer;">
+            <tr>
               <td>{{ props.item.id }}</td>
               <td>{{ props.item.objects[0].value }}</td>
               <td>{{ props.item.objects[1].value }}</td>
               <td>{{ props.item.objects[2].dst_port }}</td>
               <td class="text-xs-right">{{ props.item.number_observed }}</td>
               <td class="text-xs-right">{{ props.item.first_observed | moment('MMMM Do YYYY, h:mm:ss a') }}</td>
-
+              <td>
+                <button class="btn btn-primary" style="margin-right: 8px;" @click="props.expanded = !props.expanded"><font-awesome-icon icon="expand" /></button>
+              </td>
             </tr>
           </template>
           <template v-slot:expand="props">
@@ -146,6 +148,10 @@
           {
             text: 'First Observed',
             value: 'first_observed'
+          },
+          {
+            text: 'Action',
+            value: 'action'
           }
         ]
       }

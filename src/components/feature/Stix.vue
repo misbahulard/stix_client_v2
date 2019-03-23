@@ -25,6 +25,11 @@
         }
       }
     },
+    mounted() {
+      if (this.$props.data != null) {
+        this.createGraph()
+      } 
+    },
     methods: {
       createGraph() {
         if (this.$props.data != null) {

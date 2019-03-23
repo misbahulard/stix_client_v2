@@ -72,7 +72,7 @@
         <v-data-table :headers="headers" :items="bundles.data" :pagination.sync="pagination" :total-items="bundles.size"
           :loading="bundlesIsLoading" :expand="expand" class="elevation-1">
           <template v-slot:items="props">
-            <tr style="cursor: pointer;">
+            <tr>
               <td>{{ props.item.id }}</td>
               <td>{{ props.item.objects[0].objects[0].value }}</td>
               <td>{{ props.item.objects[0].objects[1].value }}</td>
@@ -186,7 +186,7 @@
           },
           {
             text: 'Action',
-            value: 'visualize'
+            value: 'action'
           }
         ],
         height: 0,
