@@ -10,7 +10,7 @@
             <h4>Recent Bundle Visualization</h4>
           </div>
           <div class="card-body" ref="stixContainer">
-            <stix :data="bundles.data[0]" :width="width" :height="height"></stix>
+            <stix :data="selectedBundle" :width="width" :height="height"></stix>
           </div>
         </div>
       </div>
@@ -72,12 +72,15 @@
         <v-data-table :headers="headers" :items="bundles.data" :pagination.sync="pagination" :total-items="bundles.size"
           :loading="bundlesIsLoading" :expand="expand" class="elevation-1">
           <template v-slot:items="props">
-            <tr @click="props.expanded = !props.expanded" style="cursor: pointer;">
+            <tr style="cursor: pointer;">
               <td>{{ props.item.id }}</td>
               <td>{{ props.item.objects[0].objects[0].value }}</td>
               <td>{{ props.item.objects[0].objects[1].value }}</td>
               <td>{{ props.item.objects[5].name }}</td>
-
+              <td style="width: 140px;">
+                <button class="btn btn-primary" style="margin-right: 8px;" @click="props.expanded = !props.expanded"><font-awesome-icon icon="expand" /></button>
+                <button class="btn btn-danger"><font-awesome-icon icon="eye" @click="changeBundle(props.item)" /></button>
+              </td>
             </tr>
           </template>
           <template v-slot:expand="props">
@@ -180,6 +183,10 @@
           {
             text: 'Attack Pattern',
             value: 'objects.5.name'
+          },
+          {
+            text: 'Action',
+            value: 'visualize'
           }
         ],
         height: 0,
@@ -237,45 +244,8 @@
       }
     },
     methods: {
-      /**
-       * nomrmalisasi object dengan cara menghilangkan informasi yang tidak penting
-       * @param {object} data - object bundle
-       */
-      normalizeObject(data) {
-        var clearedObj = Object.assign({}, data)
-        delete clearedObj["fx"];
-        delete clearedObj["fy"];
-        delete clearedObj["vx"];
-        delete clearedObj["vy"];
-        delete clearedObj["x"];
-        delete clearedObj["y"];
-        delete clearedObj["index"];
-
-        return clearedObj;
-      },
-
-      /**
-       * dapatkan legenda dari object bundle
-       * legenda berupa icon dan nama objectnya
-       * @param {object} data - object bundle
-       */
-      getLegend(data) {
-        var legend = [];
-        var objects = data.objects;
-        objects.forEach(item => {
-          if (item['type'] !== 'relationship') {
-            var exist = legend.some(el => el.name === item.type);
-            if (!exist) {
-              var icon = "stix2_" + item.type.replace(/\-/g, '_') + "_icon_tiny_round_v1.png";
-              legend.push({
-                name: item.type,
-                icon: icon
-              });
-            }
-          }
-        });
-
-        return legend;
+      changeBundle(data) {
+        this.$store.dispatch(types.CHANGE_BUNDLE_SELECTED_BUNDLE, data)
       }
     },
     mounted() {

@@ -23,13 +23,14 @@ import {
   faEye,
   faUser,
   faTheaterMasks,
-  faCodeBranch
+  faCodeBranch,
+  faExpand
 } from '@fortawesome/free-solid-svg-icons'
 import {
   FontAwesomeIcon
 } from '@fortawesome/vue-fontawesome'
 
-library.add([faBars, faSearch, faSignOutAlt, faFire, faArchive, faEye, faUser, faTheaterMasks, faCodeBranch])
+library.add([faBars, faSearch, faSignOutAlt, faFire, faArchive, faEye, faUser, faTheaterMasks, faCodeBranch, faExpand])
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 

@@ -4,6 +4,23 @@ import axios from 'axios'
 import router from '@/router.js'
 
 /**
+   * nomrmalisasi object dengan cara menghilangkan informasi yang tidak penting
+   * @param {object} data - object bundle
+   */
+  function normalizeObject(data) {
+    var clearedObj = Object.assign({}, data)
+    delete clearedObj["fx"];
+    delete clearedObj["fy"];
+    delete clearedObj["vx"];
+    delete clearedObj["vy"];
+    delete clearedObj["x"];
+    delete clearedObj["y"];
+    delete clearedObj["index"];
+
+    return clearedObj;
+  }
+
+/**
  * dapatkan legenda dari object bundle
  * legenda berupa icon dan nama objectnya
  * @param {object} data - object bundle
@@ -96,7 +113,7 @@ const mutations = {
     if (data == null) {
       state.selectedNode = state.data[0].objects[0]
     } else {
-      state.selectedNode = data
+      state.selectedNode = normalizeObject(data)
     }
   }
 }

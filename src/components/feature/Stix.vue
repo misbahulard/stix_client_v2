@@ -4,14 +4,11 @@
   </div>
 </template>
 <script>
+  import * as types from '@/store/types'
   import * as d3 from 'd3'
+  
   export default {
     name: 'Stix',
-    data() {
-      return {
-        selectedNode: ""
-      }
-    },
     props: {
       data: Object,
       width: Number,
@@ -21,8 +18,12 @@
         type: Function
       }
     },
-    mounted() {
-      this.createGraph()
+    watch: {
+      data: {
+        handler() {
+          this.createGraph()
+        }
+      }
     },
     methods: {
       createGraph() {
@@ -225,12 +226,7 @@
             d3.select('.selected').classed('selected', false)
             d3.select(id).classed('selected', true)
 
-            if (this.$props.handleSelectNode !== null) {
-              this.$props.handleSelectNode(d)
-            } else {
-              this.selectedNode = d
-            }
-
+            this.$store.dispatch(types.CHANGE_BUNDLE_SELECTED_NODE, d)
           }
 
           /* ******************************************************
