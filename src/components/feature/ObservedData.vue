@@ -33,7 +33,6 @@
               <v-card-title primary-title>
                 <div>
                   <div class="headline">Observed Data Detail</div>
-                  <span>Detail from {{ props.item.id }}</span>
                 </div>
               </v-card-title>
               <v-card-text>

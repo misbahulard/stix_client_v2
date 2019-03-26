@@ -31,7 +31,6 @@
               <v-card-title primary-title>
                 <div>
                   <div class="headline">Attack Pattern Detail</div>
-                  <span>Detail from {{ props.item.id }}</span>
                 </div>
               </v-card-title>
               <v-card-text>

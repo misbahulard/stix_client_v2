@@ -76,6 +76,7 @@
               <td>{{ props.item.id }}</td>
               <td>{{ props.item.objects[0].objects[0].value }}</td>
               <td>{{ props.item.objects[0].objects[1].value }}</td>
+              <td>{{ props.item.objects[0].number_observed }}</td>
               <td>{{ props.item.objects[5].name }}</td>
               <td style="width: 140px;">
                 <button class="btn btn-primary" style="margin-right: 8px;" @click="props.expanded = !props.expanded"><font-awesome-icon icon="expand" /></button>
@@ -88,7 +89,6 @@
               <v-card-title primary-title>
                 <div>
                   <div class="headline">Bundle Detail</div>
-                  <span>Detail from {{ props.item.id }}</span>
                 </div>
               </v-card-title>
               <v-card-text>
@@ -112,10 +112,10 @@
                   <div class="col-md-10 col-9 col-sm-8">: {{ props.item.objects[0].number_observed }}</div>
 
                   <div class="col-md-2 col-3 col-sm-4 font-weight-bold">&#9500; Threat Actor</div>
-                  <div class="col-md-10 col-9 col-sm-8">: {{ props.item.objects[4].description }}</div>
+                  <div class="col-md-10 col-9 col-sm-8">: {{ props.item.objects[4].name }}</div>
 
                   <div class="col-md-2 col-3 col-sm-4 font-weight-bold">&#9500; Target</div>
-                  <div class="col-md-10 col-9 col-sm-8">: {{ props.item.objects[3].description }}</div>
+                  <div class="col-md-10 col-9 col-sm-8">: {{ props.item.objects[3].name }}</div>
 
                   <div class="col-md-2 col-3 col-sm-4 font-weight-bold">&#9500; Attack Pattern</div>
                   <div class="col-md-10 col-9 col-sm-8">: {{ props.item.objects[5].name }}</div>
@@ -155,6 +155,14 @@
             value: 'objects.0.objects.1.value'
           },
           {
+            text: 'Threat Actor',
+            value: 'objects.4.name'
+          },
+          {
+            text: 'Target',
+            value: 'objects.3.name'
+          },
+          {
             text: 'Attack Pattern',
             value: 'objects.5.name'
           }
@@ -179,6 +187,10 @@
           {
             text: 'Destination IP',
             value: 'objects.0.objects.1.value'
+          },
+          {
+            text: 'Number Observed',
+            value: 'objects.0.number_observed'
           },
           {
             text: 'Attack Pattern',
