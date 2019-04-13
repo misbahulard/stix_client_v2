@@ -18,7 +18,7 @@
           <template v-slot:items="props">
             <tr>
               <td>{{ props.item.id }}</td>
-              <td>{{ props.item.name }}</td>
+              <td>{{ props.item.name.replace(/.(threat actor)/g, '') }}</td>
               <td>{{ props.item.description }}</td>
               <td class="text-xs-right">{{ props.item.created | moment('MMMM Do YYYY, h:mm:ss a') }}</td>
               <td>
@@ -42,7 +42,7 @@
                   <div class="col-md-10 col-9 col-sm-8">: {{ props.item.type }}</div>
 
                   <div class="col-md-2 col-3 col-sm-4 font-weight-bold">Name</div>
-                  <div class="col-md-10 col-9 col-sm-8">: {{ props.item.name }}</div>
+                  <div class="col-md-10 col-9 col-sm-8">: {{ props.item.name.replace(/.(threat actor)/g, '') }}</div>
                   
                   <div class="col-md-2 col-3 col-sm-4 font-weight-bold">&#9500; Description</div>
                   <div class="col-md-10 col-9 col-sm-8">: {{ props.item.description }}</div>

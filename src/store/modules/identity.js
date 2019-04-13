@@ -60,7 +60,7 @@ const actions = {
       if (data.searchBy == "" && data.query == "") {
         // kurangi -1 pada offset karena mongo DB offset 0 = data paling awal
         params = {
-          offset: data.page - 1,
+          offset: (data.page - 1) * data.rowsPerPage,
           limit: data.rowsPerPage,
           sorted: [{
             id: data.sortBy,
@@ -69,7 +69,7 @@ const actions = {
         }
       } else {
         params = {
-          offset: data.page - 1,
+          offset: (data.page - 1) * data.rowsPerPage,
           limit: data.rowsPerPage,
           sorted: [{
             id: data.sortBy,

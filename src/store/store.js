@@ -8,6 +8,7 @@ import identity from '@/store/modules/identity'
 import threatActor from '@/store/modules/threatActor'
 import attackPattern from '@/store/modules/attackPattern'
 import bundle from '@/store/modules/bundle'
+import analytics from '@/store/modules/analytics'
 
 Vue.use(Vuex)
 
@@ -20,6 +21,7 @@ export const store = new Vuex.Store({
       identity,
       threatActor,
       attackPattern,
-      bundle
+      bundle,
+      analytics
     }
 })
