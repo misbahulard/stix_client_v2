@@ -9,6 +9,7 @@ import Identity from '@/components/feature/Identity'
 import ThreatActor from '@/components/feature/ThreatActor'
 import AttackPattern from '@/components/feature/AttackPattern'
 import Bundle from '@/components/feature/Bundle'
+import BundleDdos from '@/components/feature/BundleDdos'
 
 Vue.use(Router)
 
@@ -45,6 +46,10 @@ export default new Router({
       path: 'bundle',
       name: 'Bundle',
       component: Bundle
+    }, {
+      path: 'bundle-ddos',
+      name: 'BundleDdos',
+      component: BundleDdos
     }]
   }, {
     path: '/login',

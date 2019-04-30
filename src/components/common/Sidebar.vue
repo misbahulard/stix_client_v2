@@ -45,6 +45,11 @@
             <font-awesome-icon icon="code-branch" /><span class="sidebar-text">Attack Pattern</span>
           </a>
         </router-link>
+        <router-link tag="li" to="/bundle-ddos" active-class="active" exact>
+          <a>
+            <font-awesome-icon icon="archive" /><span class="sidebar-text">STIX Bundle DDOS</span>
+          </a>
+        </router-link>
       </ul>
     </aside>
   </div>
