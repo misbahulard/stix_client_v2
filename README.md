@@ -1,4 +1,8 @@
 # stix_client_v2
+STIX Client is web visualization for STIX Objects and Graph.
+
+## Config
+set api endpoint in `axios.config.js`
 
 ## Project setup
 ```
@@ -14,16 +18,3 @@ yarn run serve
 ```
 yarn run build
 ```
-
-### Run your tests
-```
-yarn run test
-```
-
-### Lints and fixes files
-```
-yarn run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

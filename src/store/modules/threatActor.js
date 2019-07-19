@@ -85,7 +85,7 @@ const actions = {
 
     axios.post('/threat-actors', params, {
         headers: {
-          'Authorization': "Bearer " + localStorage.getItem('token')
+          'Authorization': "Bearer " + localStorage.getItem('mestix_token')
         }
       })
       .then(res => {
@@ -106,7 +106,7 @@ const actions = {
 
     axios.get('/threat-actors/' + id, {
         headers: {
-          'Authorization': "Bearer " + localStorage.getItem('token')
+          'Authorization': "Bearer " + localStorage.getItem('mestix_token')
         }
       })
       .then(res => {

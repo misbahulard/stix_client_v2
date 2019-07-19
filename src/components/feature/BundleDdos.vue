@@ -115,12 +115,12 @@
                   <div class="col-md-2 col-3 col-sm-4 font-weight-bold">&#9500; Total obs.</div>
                   <div class="col-md-10 col-9 col-sm-8">: {{ props.item.objects[0].number_observed }}</div>
 
-                  <div class="col-md-2 col-3 col-sm-4 font-weight-bold">&#9500; Threat Actor</div>
-                  <div class="col-md-10 col-9 col-sm-8">:
-                    {{ props.item.objects[4].name.replace(/.(threat actor)/g, '') }}</div>
+                  <!-- <div class="col-md-2 col-3 col-sm-4 font-weight-bold">&#9500; Threat Actor</div> -->
+                  <!-- <div class="col-md-10 col-9 col-sm-8">: {{ props.item.objects[4].name }}</div> -->
+                  <!-- <div class="col-md-10 col-9 col-sm-8">: {{ props.item.objects[4].name.replace(/.(threat actor)/g, '') }}</div> -->
 
-                  <div class="col-md-2 col-3 col-sm-4 font-weight-bold">&#9500; Target</div>
-                  <div class="col-md-10 col-9 col-sm-8">: {{ props.item.objects[3].name.replace(/.(generic)/g, '') }}
+                  <!-- <div class="col-md-2 col-3 col-sm-4 font-weight-bold">&#9500; Target</div> -->
+                  <!-- <div class="col-md-10 col-9 col-sm-8">: {{ props.item.objects[3].name.replace(/.(generic)/g, '') }} -->
                   </div>
 
                   <div class="col-md-2 col-3 col-sm-4 font-weight-bold">&#9500; Attack Pattern</div>
@@ -139,7 +139,7 @@
   import * as types from '@/store/types'
 
   export default {
-    name: "ObservedData",
+    name: "BundleDdos",
     components: {
       Stix
     },

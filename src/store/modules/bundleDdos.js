@@ -154,7 +154,7 @@ const actions = {
 
     axios.post('/bundles-ddos', params, {
         headers: {
-          'Authorization': "Bearer " + localStorage.getItem('token')
+          'Authorization': "Bearer " + localStorage.getItem('mestix_token')
         }
       })
       .then(res => {
@@ -177,7 +177,7 @@ const actions = {
 
     axios.get('/bundles-ddos/' + id, {
         headers: {
-          'Authorization': "Bearer " + localStorage.getItem('token')
+          'Authorization': "Bearer " + localStorage.getItem('mestix_token')
         }
       })
       .then(res => {

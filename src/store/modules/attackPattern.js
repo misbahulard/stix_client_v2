@@ -85,7 +85,7 @@ const actions = {
 
     axios.post('/attack-patterns', params, {
         headers: {
-          'Authorization': "Bearer " + localStorage.getItem('token')
+          'Authorization': "Bearer " + localStorage.getItem('mestix_token')
         }
       })
       .then(res => {
@@ -106,7 +106,7 @@ const actions = {
 
     axios.get('/attack-patterns/' + id, {
         headers: {
-          'Authorization': "Bearer " + localStorage.getItem('token')
+          'Authorization': "Bearer " + localStorage.getItem('mestix_token')
         }
       })
       .then(res => {

@@ -102,7 +102,7 @@ const actions = {
 
     axios.get('/analytics/alert-count', {
         headers: {
-          'Authorization': "Bearer " + localStorage.getItem('token')
+          'Authorization': "Bearer " + localStorage.getItem('mestix_token')
         }
       })
       .then(res => {
@@ -120,7 +120,7 @@ const actions = {
 
     axios.get('/analytics/port-count', {
         headers: {
-          'Authorization': "Bearer " + localStorage.getItem('token')
+          'Authorization': "Bearer " + localStorage.getItem('mestix_token')
         }
       })
       .then(res => {
@@ -138,7 +138,7 @@ const actions = {
 
     axios.get('/analytics/actor-count', {
         headers: {
-          'Authorization': "Bearer " + localStorage.getItem('token')
+          'Authorization': "Bearer " + localStorage.getItem('mestix_token')
         }
       })
       .then(res => {
@@ -156,7 +156,7 @@ const actions = {
 
     axios.get('/analytics/actor-country-count', {
         headers: {
-          'Authorization': "Bearer " + localStorage.getItem('token')
+          'Authorization': "Bearer " + localStorage.getItem('mestix_token')
         }
       })
       .then(res => {
@@ -174,7 +174,7 @@ const actions = {
 
     axios.get('/analytics/target-count', {
         headers: {
-          'Authorization': "Bearer " + localStorage.getItem('token')
+          'Authorization': "Bearer " + localStorage.getItem('mestix_token')
         }
       })
       .then(res => {
@@ -192,7 +192,7 @@ const actions = {
 
     axios.get('/analytics/target-country-count', {
         headers: {
-          'Authorization': "Bearer " + localStorage.getItem('token')
+          'Authorization': "Bearer " + localStorage.getItem('mestix_token')
         }
       })
       .then(res => {

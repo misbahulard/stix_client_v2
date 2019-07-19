@@ -74,7 +74,7 @@
 <script>
   import * as types from '@/store/types'
   export default {
-    name: "ObservedData",
+    name: "Indicator",
     data() {
       return {
         expand: false,

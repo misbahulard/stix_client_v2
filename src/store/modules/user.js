@@ -73,9 +73,9 @@ const actions = {
         })
         const now = new Date()
         const expirationDate = new Date(now.getTime() + 3600 * 1000)
-        localStorage.setItem('token', res.data.token)
-        localStorage.setItem('userId', res.data.id)
-        localStorage.setItem('expirationDate', expirationDate)
+        localStorage.setItem('mestix_token', res.data.token)
+        localStorage.setItem('mestix_userId', res.data.id)
+        localStorage.setItem('mestix_expirationDate', expirationDate)
         // dispatch(types.STORE_USER, data)
         dispatch(types.SET_LOGOUT_TIMER, 3600)
       })
@@ -100,10 +100,10 @@ const actions = {
           })
           const now = new Date()
           const expirationDate = new Date(now.getTime() + 3600 * 1000)
-          localStorage.setItem('token', res.data.access_token)
-          localStorage.setItem('userId', res.data.id)
-          localStorage.setItem('username', res.data.username)
-          localStorage.setItem('expirationDate', expirationDate)
+          localStorage.setItem('mestix_token', res.data.access_token)
+          localStorage.setItem('mestix_userId', res.data.id)
+          localStorage.setItem('mestix_username', res.data.username)
+          localStorage.setItem('mestix_expirationDate', expirationDate)
 
           var user = {
             "token": res.data.access_token,
@@ -132,26 +132,26 @@ const actions = {
     commit,
     dispatch
   }) => {
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem('mestix_token')
     if (!token) {
       return
     }
-    const expirationDate = new Date(localStorage.getItem('expirationDate'))
+    const expirationDate = new Date(localStorage.getItem('mestix_expirationDate'))
     const now = new Date()
     if (now >= expirationDate) {
       dispatch(types.LOGOUT)
       return
     }
-    const userId = localStorage.getItem('userId')
+    const userId = localStorage.getItem('mestix_userId')
     commit(types.MUTATE_AUTH_USER, {
       token: token,
       userId: userId
     })
 
     var user = {
-      "token": localStorage.getItem('token'),
-      "userId": localStorage.getItem('userId'),
-      "username": localStorage.getItem('username')
+      "token": localStorage.getItem('mestix_token'),
+      "userId": localStorage.getItem('mestix_userId'),
+      "username": localStorage.getItem('mestix_username')
     }
     commit(types.MUTATE_STORE_USER, user)
 
@@ -161,7 +161,7 @@ const actions = {
   }) => {
     axios.post('/logout/access', {}, {
         headers: {
-          'Authorization': "Bearer " + localStorage.getItem('token')
+          'Authorization': "Bearer " + localStorage.getItem('mestix_token')
         }
       })
       .then(res => {

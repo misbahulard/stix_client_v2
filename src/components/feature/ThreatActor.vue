@@ -67,7 +67,7 @@
 <script>
   import * as types from '@/store/types'
   export default {
-    name: "ObservedData",
+    name: "ThreatActor",
     data() {
       return {
         expand: false,

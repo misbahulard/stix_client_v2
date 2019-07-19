@@ -133,7 +133,7 @@
   import * as types from '@/store/types'
 
   export default {
-    name: "ObservedData",
+    name: "Bundle",
     components: {
       Stix
     },
