@@ -149,7 +149,7 @@
       </div>
     </div>
     <!-- Analytics -->
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-lg-6 col-md-12 col-12 col-sm-12">
         <div class="card">
           <div class="card-header">
@@ -290,7 +290,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </section>
 </template>
 <script>
@@ -348,42 +348,42 @@
       bundlesIsLoading() {
         return this.$store.getters[types.BUNDLE_LOADING]
       },
-      alertCount() {
-        return this.$store.getters[types.GET_ANALYTICS_ALERT_COUNT]
-      },
-      portCount() {
-        return this.$store.getters[types.GET_ANALYTICS_PORT_COUNT]
-      },
-      actorCount() {
-        return this.$store.getters[types.GET_ANALYTICS_ACTOR_COUNT]
-      },
-      actorCountryCount() {
-        return this.$store.getters[types.GET_ANALYTICS_ACTOR_COUNTRY_COUNT]
-      },
-      targetCount() {
-        return this.$store.getters[types.GET_ANALYTICS_TARGET_COUNT]
-      },
-      targetCountryCount() {
-        return this.$store.getters[types.GET_ANALYTICS_TARGET_COUNTRY_COUNT]
-      },
-      alertCountLoading() {
-        return this.$store.getters[types.GET_ANALYTICS_ALERT_COUNT_LOADING]
-      },
-      portCountLoading() {
-        return this.$store.getters[types.GET_ANALYTICS_PORT_COUNT_LOADING]
-      },
-      actorCountLoading() {
-        return this.$store.getters[types.GET_ANALYTICS_ACTOR_COUNT_LOADING]
-      },
-      actorCountryCountLoading() {
-        return this.$store.getters[types.GET_ANALYTICS_ACTOR_COUNTRY_COUNT_LOADING]
-      },
-      targetCountLoading() {
-        return this.$store.getters[types.GET_ANALYTICS_ACTOR_COUNT_LOADING]
-      },
-      targetCountryCountLoading() {
-        return this.$store.getters[types.GET_ANALYTICS_ACTOR_COUNTRY_COUNT_LOADING]
-      },
+      // alertCount() {
+      //   return this.$store.getters[types.GET_ANALYTICS_ALERT_COUNT]
+      // },
+      // portCount() {
+      //   return this.$store.getters[types.GET_ANALYTICS_PORT_COUNT]
+      // },
+      // actorCount() {
+      //   return this.$store.getters[types.GET_ANALYTICS_ACTOR_COUNT]
+      // },
+      // actorCountryCount() {
+      //   return this.$store.getters[types.GET_ANALYTICS_ACTOR_COUNTRY_COUNT]
+      // },
+      // targetCount() {
+      //   return this.$store.getters[types.GET_ANALYTICS_TARGET_COUNT]
+      // },
+      // targetCountryCount() {
+      //   return this.$store.getters[types.GET_ANALYTICS_TARGET_COUNTRY_COUNT]
+      // },
+      // alertCountLoading() {
+      //   return this.$store.getters[types.GET_ANALYTICS_ALERT_COUNT_LOADING]
+      // },
+      // portCountLoading() {
+      //   return this.$store.getters[types.GET_ANALYTICS_PORT_COUNT_LOADING]
+      // },
+      // actorCountLoading() {
+      //   return this.$store.getters[types.GET_ANALYTICS_ACTOR_COUNT_LOADING]
+      // },
+      // actorCountryCountLoading() {
+      //   return this.$store.getters[types.GET_ANALYTICS_ACTOR_COUNTRY_COUNT_LOADING]
+      // },
+      // targetCountLoading() {
+      //   return this.$store.getters[types.GET_ANALYTICS_ACTOR_COUNT_LOADING]
+      // },
+      // targetCountryCountLoading() {
+      //   return this.$store.getters[types.GET_ANALYTICS_ACTOR_COUNTRY_COUNT_LOADING]
+      // },
     },
     mounted() {
       this.height = 500
@@ -395,12 +395,12 @@
       this.$store.dispatch(types.GET_ALL_THREAT_ACTOR)
       this.$store.dispatch(types.GET_ALL_ATTACK_PATTERN)
       this.$store.dispatch(types.GET_ALL_BUNDLE)
-      this.$store.dispatch(types.REQUEST_ANALYTICS_ALERT_COUNT)
-      this.$store.dispatch(types.REQUEST_ANALYTICS_PORT_COUNT)
-      this.$store.dispatch(types.REQUEST_ANALYTICS_ACTOR_COUNT)
-      this.$store.dispatch(types.REQUEST_ANALYTICS_ACTOR_COUNTRY_COUNT)
-      this.$store.dispatch(types.REQUEST_ANALYTICS_TARGET_COUNT)
-      this.$store.dispatch(types.REQUEST_ANALYTICS_TARGET_COUNTRY_COUNT)
+      // this.$store.dispatch(types.REQUEST_ANALYTICS_ALERT_COUNT)
+      // this.$store.dispatch(types.REQUEST_ANALYTICS_PORT_COUNT)
+      // this.$store.dispatch(types.REQUEST_ANALYTICS_ACTOR_COUNT)
+      // this.$store.dispatch(types.REQUEST_ANALYTICS_ACTOR_COUNTRY_COUNT)
+      // this.$store.dispatch(types.REQUEST_ANALYTICS_TARGET_COUNT)
+      // this.$store.dispatch(types.REQUEST_ANALYTICS_TARGET_COUNTRY_COUNT)
     }
   }
 </script>
